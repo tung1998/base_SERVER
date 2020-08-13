@@ -13,6 +13,7 @@ const Variable = require('./configVariables')
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const managersRouter = require('./routes/managers');
+const employeesRouter = require('./routes/employees');
 const viewRouter = require('./routes/view');
 const app = express();
 
@@ -46,6 +47,7 @@ app.use(checkUser);
 //add router
 app.use('/users', usersRouter);
 app.use('/managers', managersRouter);
+app.use('/employees', employeesRouter);
 app.use('/view', viewRouter);
 
 // app.use('/login', loginRouter);

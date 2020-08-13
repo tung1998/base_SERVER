@@ -1,10 +1,14 @@
 const mongoose = require('mongoose');
-            password: "12345678"
 const Users = require('./users')
 const MANAGERS = new mongoose.Schema({
-    name: String,
-    phone: Number,
-    email: String
+    createdAt: {
+        type: Number,
+        default: Date.now()
+    },
+    updatedAt: {
+        type: Number,
+        default: Date.now()
+    }
 });
 
 const Managers = mongoose.model('Managers', MANAGERS);
@@ -42,10 +46,10 @@ function getByID(id) {
     })
 }
 
-function create(data) {
+function create({username, password}) {
     return Users.create({
-        username: data.username,
-        password: data.password,
+        username,
+        password,
         userType: 0,
     }).then(result => {
         data.userID = result._id

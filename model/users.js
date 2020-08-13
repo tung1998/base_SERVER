@@ -19,6 +19,18 @@ const USERS = new mongoose.Schema({
     isDeleted: {
         type: Boolean,
         default: false
+    },
+    name: String,
+    phone: String,
+    email: String,
+    dateOfBirth: String,
+    createdAt: {
+        type: Number,
+        default: Date.now()
+    },
+    updatedAt: {
+        type: Number,
+        default: Date.now()
     }
 });
 
@@ -39,14 +51,14 @@ module.exports = {
 function getAll() {
     return Users.find({
         isDeleted: false
-    }).select({ userType: 1, _id: 1, username: 1 })
+    }).select({ userType: 1, _id: 1, username: 1, name: 1, phone: 1, email: 1 })
 }
 
 function getByID(id) {
     return Users.findOne({
         _id: ObjectId(id),
         isDeleted: false
-    }).select({ userType: 1, _id: 1, username: 1 })
+    }).select({ userType: 1, _id: 1, username: 1, name: 1, phone: 1, email: 1 })
 }
 
 function getByAccessToken(accessToken) {
