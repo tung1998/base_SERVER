@@ -26,7 +26,7 @@ function _PERMISSION() {
             /POST \/users\/deleteAccesstoken/,
         ],
         NO_RULE: [
-            /POST \/users\/checkPassword/,
+            /POST \/users\/login/,
             /GET \/view.*/
         ]
     }

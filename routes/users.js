@@ -59,16 +59,7 @@ router.get('/getByAccessToken/:accessToken', (req, res, next) => {
 });
 
 router.post('/', (req, res, next) => {
-    let {
-        username,
-        password,
-        userType,
-    } = req.body
-    Users.create({
-        username,
-        password,
-        userType
-    }).then(result => {
+    Users.create(req.body).then(result => {
         console.log(result)
         res.send(result)
     }).catch(error => {
@@ -78,13 +69,8 @@ router.post('/', (req, res, next) => {
 
 router.put('/:id(\[0-9a-fA-F]{24})', (req, res, next) => {
     let id = req.params.id
-    let {
-        username,
-        userType,
-    } = req.body
     Users.update(id, {
-        username,
-        userType,
+        $set: req.body
     }).then(result => {
         console.log(result)
         res.send(result)
@@ -131,12 +117,12 @@ router.post('/changePassword', (req, res, next) => {
 });
 
 
-router.post('/checkPassword', (req, res, next) => {
+router.post('/login', (req, res, next) => {
     let {
         username,
         password
     } = req.body
-    Users.checkPassword(username, password).then(result => {
+    Users.login(username, password).then(result => {
         res.send(result)
     }).catch(error => {
         console.log(error)
@@ -148,7 +134,7 @@ router.post('/checkPassword', (req, res, next) => {
 router.post('/deleteAccesstoken', (req, res, next) => {
     let id = req.user._id
     Users.deleteAccessToken(id).then(result => {
-        res.send(result)
+        res.send("result")
     }).catch(error => {
         console.log(error)
         res.send(error)

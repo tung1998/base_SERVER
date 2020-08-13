@@ -7,7 +7,7 @@ $(document).ready(function () {
         console.log(data)
         $.ajax({
             method: 'post',
-            url: '/users/checkPassword',
+            url: '/users/login',
             dataType: 'json',
             contentType: 'application/json',
             data: JSON.stringify(data)

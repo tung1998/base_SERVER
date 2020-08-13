@@ -40,9 +40,10 @@ function create(data) {
         password: '12345678',
         userType: 1,
         ...data
-    }).then(result => {
+    }).then(async result => {
         data.userID = result._id
-        return Employees.create(data)
+        await Employees.create(data)
+        return result
     })
 }
 

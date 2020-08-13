@@ -46,8 +46,9 @@ module.exports = {
     deleteOne,
     getByAccessToken,
     changePassword,
-    checkPassword,
-    deleteAccessToken
+    login,
+    deleteAccessToken,
+    createAccesstoken
 }
 
 function getAll() {
@@ -116,42 +117,56 @@ async function changePassword(id, newPass) {
     }
 }
 
-function checkPassword(username, password) {
+function login(username, password) {
     return Users.findOne({
         username,
         isDeleted: false
-    }).then(user => {
+    }).then(async user => {
         let hashPassword = Crypto.encodeSHA256(password, user.salt)
         if (hashPassword == user.password) {
             let {
                 _id,
                 userType,
                 username,
-                accessToken
             } = user
+            let accessToken =await createAccesstoken(_id)
             return {
+                success: true,
                 userID: _id,
                 username,
                 userType,
-                message: 'Correct password!',
+                message: 'Success',
                 accessToken
             }
         } else return {
+            success: false,
             message: 'Wrong password!'
         }
     }).catch(error => {
         return {
+            success: false,
             message: 'User not found!'
         }
     })
 }
 
 
-async function deleteAccessToken(id) {
+async function createAccesstoken(id) {
     accessToken = await Crypto.random64Bytes()
-    return Users.update({
+    await Users.update({
         _id: ObjectId(id)
     }, {
         accessToken
     })
+    return accessToken
 }
+
+function deleteAccessToken(id) {
+    return Users.update({
+        _id: ObjectId(id)
+    }, {
+        accessToken: ""
+    })
+}
+
+
