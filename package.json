@@ -1,0 +1,28 @@
+{
+  "name": "ereg_server",
+  "version": "1.0.0",
+  "description": "FilesManager_blackBirds\r ## I Hướng dẫn cài đặt\r 1. Cài đặt môi trường nodejs để chạy server - setup nodejs environment (link: https://nodejs.org/en/ )\r 2. clone repo  (link: https://github.com/tung1998/filesManager/)\r 3. Cài đặt mysql server và filesmanager database (thư mục cấu hình database: filemanager.sql)\r 4. cài đặt các thư viện sử dụng tại server - setup module: chạy lệnh( npm i )\r 5. Chạy server - run server: chạy lệnh ( node www ) trong thư mục bin\r ## II Các chức năng chính\r   ### 1. Đăng kí, Đăng nhập, và các chức năng liên quan\r     1. Đăng kí (/register) .\r         - Điền các thông tin theo yêu cầu.\r         - Bấm nút (Register).\r         - một email xác nhận mật khẩu sẽ được gửi đến mail mà bạn đã điền.\r         - Xác nhận email và nó sẽ chuyển hướng bạn đến trang đăng nhập.\r     2. Đăng nhập\r         - Điền các thông tin theo yêu cầu.\r         - Bấm nút (Login).\r     3. Chức năng lấy mật khẩu và gửi lại mail xác nhận\r         - Nếu quên mật khẩu, bạn có thể vào (/recoverpw) để nhận được một email đổi mật khẩu\r         - Điền mật khẩu mới và xác nhận\r         - Gửi lại email xác nhận cũng tương tự trại (/resendconfirmmail)\r     *****\r       - Bạn phải đăng nhập để có thể sử dụng các chức năng khác của Ứng Dụng.\r       - Điền sai thông tin sẽ có các dialog thông báo.\r  ### 2. Chức năng của người dùng\r       - khi tạo tài khoản, người dùng sẽ có mặc định một folder gốc có tên trùng với tên tài khoản\r       1. Thao tác với folder\r        - thêm mới, sửa tên, đưa vào thùng rác:( right click --> add||rename||delete)\r        - truy cập một folder: - ( right click --> Show)\r                               - ( double click )\r       2. Thao tác với file\r        - Upload File (right click --> Upload File  --> Chọn File --> ok) \r                 - File upload sẽ ở trong thư mục hiện thời\r                 - không thể upload file tại các khu vực khác ngoài myFodler\r        - Xóa, đổi tên file (right click)\r        - Trình chiếu file (hiện nay app có thể trình chiếu được một số loại file cơ bản): (pdf,mp3,mp4,các loại file ảnh, các loại file text)\r        - Download file: Người dùng có thể download file mà mình sở hữu hoặc được chia sẻ\r       3. Các chức năng khác\r        - cut,copy,paste: hỗ trợ người dùng quản lí.\r        - Thêm vào yêu thích: Đánh dấu những mục hay truy cập để tiện việc theo dõi.\r        - Hiện những file truy cập trong ngày, để tiện việc theo dõi.\r        - Tìm kiếm: sàng lọc các thư mục và file cho ra kết quả mà người dùng mong muốn.\r        - Duyệt cây: hỗ trợ truy xuất thư mục\r        - Thay đổi dạng trình chiếu: Hiện nay có 2 dạng trình chiếu cơ bản là list và grid\r               + list cung cấp danh sách kèm theo một số thông tin như kích cỡ, đường dẫn, ngày khởi tạo.\r               + Grid style cung vấp sự gọn gàng dễ nhìn, hiển thị được số lượng nhiều hơn.\r        - Chia sẻ: dễ dàng chia sẻ dữ liệu với các người dùng khác, người được chia sẻ sẽ không thể sửa đổi tên hay xóa, nhưng có thể trình chiếu và download.\r ### 3. Chức năng của Admin\r        1. Quản lý Người dùng: \r         - Liệt kê danh sách người dùng: hiển thị thông tin của người dùng, tiện cho việc quản lí\r         - Kích hoạt tài khoản: có thể kích hoạt tài khoản trực tiếp cho người dùng thay vì người dùng phải xác nhận qua mail\r         - Đổi mật khẩu người dùng: có thể trực tiếp thay đổi mật khẩu giúp người dùng.\r         - khóa tài khoản: Có thể khóa tài khoản người dùng nếu người dùng vi phạm các quy tắc khi tham gia sử dụng app\r         - Xóa tài khoản: Tài khoản vi phạm điều lệ nhiều lần, tài khoản ma,... có thể bị xóa khi sử dụng chức năng này\r        2. Quản lí thư mục\r        3. Quản lí Admin\r         - Hiện thị danh sách các admin\r         - thêm mới admin\r         - xóa admin\r ### 4.Các chức năng trong tương lai\r         - Trình chiếu được nhiều loại file hơn nữa\r         - Đặt mật khẩu khi truy cập file\r ## III Công nghệ\r   #### FrontEnd\r       PUGENGINE: Ngôn ngữ hỗ trợ lập trình frontEnd (link: https://pugjs.org/api/getting-started.html )\r       THEME : URORA-bootstrap4 (link: https://mannatthemes.com/urora/)\r       JQUERY: thư viện javascript (https://jquery.com/)\r       Contextmenu2x :  (link: https://swisnl.github.io/jQuery-contextMenu//)\r       pdf.js: hỗ trợ trình chiếu file pdf https://mozilla.github.io/pdf.js/\r   #### BackEnd\r       NodeJS EXPRESS server: (link: [link](https://expressjs.com/en/api.html#res) )\r       Mysql database: (link: https://www.mysql.com/ )\r       Module: xem trong file cấu hình [package.json](https://github.com/tung1998/filesManager/blob/master/package.json)",
+  "main": "app.js",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "formidable": "^1.2.1",
+    "mongoose": "^5.8.0",
+    "morgan": "^1.9.1",
+    "node-xlsx": "^0.15.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tung1998/EReg_Server.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tung1998/EReg_Server/issues"
+  },
+  "homepage": "https://github.com/tung1998/EReg_Server#readme"
+}
