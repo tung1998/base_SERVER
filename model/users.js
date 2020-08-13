@@ -24,6 +24,8 @@ const USERS = new mongoose.Schema({
     phone: String,
     email: String,
     dateOfBirth: String,
+    sex: String,
+    address: String,
     createdAt: {
         type: Number,
         default: Date.now()
@@ -50,15 +52,16 @@ module.exports = {
 
 function getAll() {
     return Users.find({
-        isDeleted: false
-    }).select({ userType: 1, _id: 1, username: 1, name: 1, phone: 1, email: 1 })
+        isDeleted: false,
+        userType: 1,
+    }).select({ userType: 1, _id: 1, username: 1, name: 1, phone: 1, email: 1, dateOfBirth: 1, address: 1, sex: 1 })
 }
 
 function getByID(id) {
     return Users.findOne({
         _id: ObjectId(id),
-        isDeleted: false
-    }).select({ userType: 1, _id: 1, username: 1, name: 1, phone: 1, email: 1 })
+        isDeleted: false,
+    }).select({ userType: 1, _id: 1, username: 1, name: 1, phone: 1, email: 1, dateOfBirth: 1, address: 1, sex: 1 })
 }
 
 function getByAccessToken(accessToken) {
@@ -77,7 +80,8 @@ async function create(data) {
     }, data, {
         upsert: true,
         new: true,
-        setDefaultsOnInsert: true
+        setDefaultsOnInsert: true,
+        useFindAndModify: false
     })
 }
 

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Users = require('./users')
-const MANAGERS = new mongoose.Schema({
+const EMPLOYEES = new mongoose.Schema({
     userID: Object,
     createdAt: {
         type: Number,
@@ -12,7 +12,7 @@ const MANAGERS = new mongoose.Schema({
     }
 });
 
-const Managers = mongoose.model('Managers', MANAGERS);
+const Employees = mongoose.model('Employees', EMPLOYEES);
 
 module.exports = {
     getAll,
@@ -21,52 +21,39 @@ module.exports = {
     update,
     deleteOne,
     removeOne,
-    initAdministrator
-}
-
-function initAdministrator() {
-    Managers.find({}).then(result => {
-        if (result && result.length)
-            return
-        create({
-            username: "admin",
-            password: "12345678",
-            name: "superadmin"
-        })
-    })
 }
 
 function getAll() {
-    return Managers.find({})
+    return Employees.find({})
 }
 
 function getByID(id) {
-    return Managers.findOne({
+    return Employees.findOne({
         _id: ObjectId(id),
         isDeleted: false
     })
 }
 
-function create({ username, password, name,address, dateOfBirth, phone, email, sex }) {
+function create(data) {
     return Users.create({
-        username,
-        password,
-        userType: 0,
-        dateOfBirth, name, phone, email, sex, address
+        username: data.phone,
+        password: '12345678',
+        userType: 1,
+        ...data
     }).then(result => {
         data.userID = result._id
-        return Managers.create(data)
+        return Employees.create(data)
     })
 }
 
 function update(id, data) {
-    return Managers.update({
+    return Employees.update({
         _id: ObjectId(id)
     }, data)
 }
 
 function deleteOne(id) {
-    return Managers.update({
+    return Employees.update({
         _id: ObjectId(id)
     }, {
         isDeleted: true
@@ -74,7 +61,7 @@ function deleteOne(id) {
 }
 
 function removeOne(id) {
-    return Managers.remove({
+    return Employees.remove({
         _id: ObjectId(id)
     })
 }
